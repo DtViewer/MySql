@@ -28,7 +28,12 @@ Mysql 根据用户具体的请求方式，根据其内部算法来判定是否�
        
        
 ### single page flush 
-
+    在mysql 的buffer pool 有一个空闲列表，用来记录空闲的页信息，一般当空闲页不足时，mysql的后台cleaner 线程会执行
+    flush操作，以腾出空闲页；但是如果因为某种原因造成用户请求的空闲页超过cleaner 线程的刷出能力，此时mysql会执行
+    单页的刷出操作；需要注意的是 此时flush，是从flush 列表上取一个page，然后进行flush操作，此时是同步写操作；
+ 
+### group commit 
+ 
     
     
 
